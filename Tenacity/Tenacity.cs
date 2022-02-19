@@ -20,6 +20,8 @@ namespace Tenacity
 			tenacity.Description.English("Reduces damage taken by 0.2% per level.");
 			tenacity.Name.German("Hartnäckigkeit");
 			tenacity.Description.German("Reduziert erlittenen Schaden um 0,2% pro Stufe.");
+			tenacity.Name.Turkish("Dayanıklılık");
+			tenacity.Description.Turkish("Seviye başına alınan hasarı %0.2 azaltır.");
 			tenacity.Configurable = true;
 			
 			Assembly assembly = Assembly.GetExecutingAssembly();
