@@ -11,15 +11,15 @@ namespace Tenacity
 	public class Tenacity : BaseUnityPlugin
 	{
 		private const string ModName = "Tenacity";
-		private const string ModVersion = "1.0";
+		private const string ModVersion = "1.0.1";
 		private const string ModGUID = "org.bepinex.plugins.tenacity";
 
 		public void Awake()
 		{
 			Skill tenacity = new("Tenacity", "tenacity-icon.png");
-			tenacity.Description.English("Reduces damage taken by 0.2% per level.");
+			tenacity.Description.English("Reduces damage taken slightly.");
 			tenacity.Name.German("Hartnäckigkeit");
-			tenacity.Description.German("Reduziert erlittenen Schaden um 0,2% pro Stufe.");
+			tenacity.Description.German("Reduziert den erlittenen Schaden.");
 			tenacity.Configurable = true;
 			
 			Assembly assembly = Assembly.GetExecutingAssembly();
