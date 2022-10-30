@@ -5,40 +5,39 @@ using HarmonyLib;
 using JetBrains.Annotations;
 using SkillManager;
 
-namespace Tenacity
+namespace Tenacity;
+
+[BepInPlugin(ModGUID, ModName, ModVersion)]
+public class Tenacity : BaseUnityPlugin
 {
-	[BepInPlugin(ModGUID, ModName, ModVersion)]
-	public class Tenacity : BaseUnityPlugin
+	private const string ModName = "Tenacity";
+	private const string ModVersion = "1.0.2";
+	private const string ModGUID = "org.bepinex.plugins.tenacity";
+
+	public void Awake()
 	{
-		private const string ModName = "Tenacity";
-		private const string ModVersion = "1.0.1";
-		private const string ModGUID = "org.bepinex.plugins.tenacity";
+		Skill tenacity = new("Tenacity", "tenacity-icon.png");
+		tenacity.Description.English("Reduces damage taken slightly.");
+		tenacity.Name.German("Hartnäckigkeit");
+		tenacity.Description.German("Reduziert den erlittenen Schaden.");
+		tenacity.Configurable = true;
 
-		public void Awake()
+		Assembly assembly = Assembly.GetExecutingAssembly();
+		Harmony harmony = new(ModGUID);
+		harmony.PatchAll(assembly);
+	}
+
+	[HarmonyPatch(typeof(Character), nameof(Character.RPC_Damage))]
+	private class ReduceDamageTaken
+	{
+		[UsedImplicitly]
+		private static void Prefix(Character __instance, HitData hit)
 		{
-			Skill tenacity = new("Tenacity", "tenacity-icon.png");
-			tenacity.Description.English("Reduces damage taken slightly.");
-			tenacity.Name.German("Hartnäckigkeit");
-			tenacity.Description.German("Reduziert den erlittenen Schaden.");
-			tenacity.Configurable = true;
-			
-			Assembly assembly = Assembly.GetExecutingAssembly();
-			Harmony harmony = new(ModGUID);
-			harmony.PatchAll(assembly);
-		}
-		
-		[HarmonyPatch(typeof(Character), nameof(Character.RPC_Damage))]
-		private class ReduceDamageTaken
-		{
-			[UsedImplicitly]
-			private static void Prefix(Character __instance, HitData hit)
+			if (__instance is Player player)
 			{
-				if (__instance is Player player)
-				{
-					player.RaiseSkill("Tenacity", (float) Math.Sqrt(hit.GetTotalDamage()));
+				player.RaiseSkill("Tenacity", (float)Math.Sqrt(hit.GetTotalDamage()));
 
-					hit.ApplyModifier(1 - player.GetSkillFactor("Tenacity") * 0.2f);
-				}
+				hit.ApplyModifier(1 - player.GetSkillFactor("Tenacity") * 0.2f);
 			}
 		}
 	}
