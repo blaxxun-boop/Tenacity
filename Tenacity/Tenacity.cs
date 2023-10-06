@@ -8,10 +8,11 @@ using SkillManager;
 namespace Tenacity;
 
 [BepInPlugin(ModGUID, ModName, ModVersion)]
+[BepInIncompatibility("org.bepinex.plugins.valheim_plus")]
 public class Tenacity : BaseUnityPlugin
 {
 	private const string ModName = "Tenacity";
-	private const string ModVersion = "1.0.2";
+	private const string ModVersion = "1.0.3";
 	private const string ModGUID = "org.bepinex.plugins.tenacity";
 
 	public void Awake()
