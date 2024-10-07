@@ -21,6 +21,8 @@ public class Tenacity : BaseUnityPlugin
 		tenacity.Description.English("Reduces damage taken slightly.");
 		tenacity.Name.German("Hartnäckigkeit");
 		tenacity.Description.German("Reduziert den erlittenen Schaden.");
+  		tenacity.Name.Chinese("韧性");
+		tenacity.Description.Chinese("略微降低承受的伤害");
 		tenacity.Configurable = true;
 
 		Assembly assembly = Assembly.GetExecutingAssembly();
