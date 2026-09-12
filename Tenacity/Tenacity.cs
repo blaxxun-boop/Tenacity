@@ -12,7 +12,7 @@ namespace Tenacity;
 public class Tenacity : BaseUnityPlugin
 {
 	private const string ModName = "Tenacity";
-	private const string ModVersion = "1.0.4";
+	private const string ModVersion = "1.0.5";
 	private const string ModGUID = "org.bepinex.plugins.tenacity";
 
 	public void Awake()
